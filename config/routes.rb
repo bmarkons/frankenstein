@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :room_reservations
   resources :rooms
   resources :accommodation_types
-  resources :accommodations
+  resources :accommodations do
+    get "my", on: :collection, as: :my
+  end
   resources :places
   resources :regions
   resources :countries
