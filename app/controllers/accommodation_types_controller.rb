@@ -62,13 +62,13 @@ class AccommodationTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_accommodation_type
-      @accommodation_type = AccommodationType.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_accommodation_type
+    @accommodation_type = AccommodationType.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def accommodation_type_params
-      params.require(:accommodation_type).permit(:name)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def accommodation_type_params
+    params.require(:accommodation_type).permit(:name)
+  end
 end
