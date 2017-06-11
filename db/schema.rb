@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611093458) do
+ActiveRecord::Schema.define(version: 20170611134048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,7 +59,19 @@ ActiveRecord::Schema.define(version: 20170611093458) do
     t.index ["country_id"], name: "index_regions_on_country_id", using: :btree
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.integer  "room_number"
+    t.integer  "bed_count"
+    t.text     "description"
+    t.float    "price_per_night"
+    t.integer  "accommodation_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["accommodation_id"], name: "index_rooms_on_accommodation_id", using: :btree
+  end
+
   add_foreign_key "accommodations", "places"
   add_foreign_key "places", "regions"
   add_foreign_key "regions", "countries"
+  add_foreign_key "rooms", "accommodations"
 end
