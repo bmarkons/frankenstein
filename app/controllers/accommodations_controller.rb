@@ -1,5 +1,6 @@
 class AccommodationsController < ApplicationController
   before_action :set_accommodation, only: [:show, :edit, :update, :destroy]
+  before_action :set_places, except: [:index, :my, :destroy]
 
   # GET /accommodations
   # GET /accommodations.json
@@ -24,16 +25,12 @@ class AccommodationsController < ApplicationController
   # POST /accommodations
   # POST /accommodations.json
   def create
-    @accommodation = Accommodation.new(accommodation_params)
+    @accommodation = current_user.accommodations.build(accommodation_params)
 
-    respond_to do |format|
-      if @accommodation.save
-        format.html { redirect_to @accommodation, notice: 'Accommodation was successfully created.' }
-        format.json { render :show, status: :created, location: @accommodation }
-      else
-        format.html { render :new }
-        format.json { render json: @accommodation.errors, status: :unprocessable_entity }
-      end
+    if @accommodation.save
+      redirect_to @accommodation, notice: 'Accommodation was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -66,12 +63,14 @@ class AccommodationsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_accommodation
     @accommodation = Accommodation.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  def set_places
+    @places = Place.all
+  end
+
   def accommodation_params
     params.require(:accommodation).permit(:name, :description, :address, :average_grade, :latitude, :longitude, :image_url, :approved, :place_id)
   end

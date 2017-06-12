@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= f.label :description %>
-    <%= f.text_field :description %>
+    <%= f.text_area :description %>
   </div>
 
   <div class="field">
@@ -27,18 +27,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :average_grade %>
-    <%= f.text_field :average_grade %>
-  </div>
-
-  <div class="field">
     <%= f.label :latitude %>
-    <%= f.text_field :latitude %>
+    <%= f.number_field :latitude %>
   </div>
 
   <div class="field">
     <%= f.label :longitude %>
-    <%= f.text_field :longitude %>
+    <%= f.number_field :longitude %>
   </div>
 
   <div class="field">
@@ -47,13 +42,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :approved %>
-    <%= f.check_box :approved %>
-  </div>
-
-  <div class="field">
-    <%= f.label :place_id %>
-    <%= f.text_field :place_id %>
+    <%= f.select :place_id, @places.map { |place| [place.name, place.id] }, :prompt => "Select place" %>
   </div>
 
   <div class="actions">
