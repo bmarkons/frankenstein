@@ -1,4 +1,4 @@
 class Region < ApplicationRecord
   belongs_to :country
-  has_many :places, :dependent => :delete_all
+  has_many :places, :dependent => :destroy
 end

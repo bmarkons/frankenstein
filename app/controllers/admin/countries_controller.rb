@@ -55,6 +55,6 @@ class Admin::CountriesController < ApplicationController
     end
 
     def country_params
-      params.fetch(:country, {})
+      params.require(:country).permit(:name, :code)
     end
 end
