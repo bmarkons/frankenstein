@@ -8,11 +8,11 @@ class Accommodation < ApplicationRecord
   scope :owned_by, -> (user) { where(user: user) }
   scope :all_except_owned_by, -> (user) { where.not(user: user) }
 
-  def owned_by?(owner)
-    owner.id == user.id
+  def self.top10
+    order(average_grade: :desc).first(10)
   end
 
-  def top10
-    order(grade: :desc).first(10)
+  def owned_by?(owner)
+    owner.id == user.id
   end
 end
