@@ -1,4 +1,4 @@
-class Admin::AccommodationTypesController < ApplicationController
+class Admin::AccommodationTypesController < AdminController
   before_action :set_accommodation_type, only: [:show, :edit, :update, :destroy]
 
   def index

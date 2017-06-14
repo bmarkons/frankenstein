@@ -1,4 +1,4 @@
-class Admin::RegionsController < ApplicationController
+class Admin::RegionsController < AdminController
   before_action :set_region, only: [:show, :edit, :update, :destroy]
   before_action :set_countries, only: [:edit, :new, :update, :create]
 

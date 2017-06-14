@@ -1,4 +1,4 @@
-class Admin::CountriesController < ApplicationController
+class Admin::CountriesController < AdminController
   before_action :set_country, only: [:show, :edit, :update, :destroy]
 
   def index
