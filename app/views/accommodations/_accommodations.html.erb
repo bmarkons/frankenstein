@@ -3,6 +3,7 @@
     <tr>
       <th>Type</th>
       <th>Name</th>
+      <th>Rooms</th>
       <th>Description</th>
       <th>Address</th>
       <th>Average grade</th>
@@ -19,6 +20,7 @@
       <tr>
         <td><%= accommodation.accommodation_type.name %>
         <td><%= accommodation.name %></td>
+        <td><%= link_to accommodation.rooms.count, accommodation_rooms_path(accommodation) %></td>
         <td><%= accommodation.description %></td>
         <td><%= accommodation.address %></td>
         <td><%= accommodation.average_grade %></td>

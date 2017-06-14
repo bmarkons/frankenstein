@@ -22,8 +22,8 @@
 
 <p>
   <strong>Accommodation:</strong>
-  <%= @room.accommodation %>
+  <%= link_to @room.accommodation.name, accommodation_path(@room.accommodation) %>
 </p>
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<%= link_to 'Edit', edit_accommodation_room_path(@accommodation, @room) if @accommodation.owned_by?(current_user) %> |
+<%= link_to 'Back', accommodation_rooms_path(@accommodation) %>
