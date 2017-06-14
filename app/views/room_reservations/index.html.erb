@@ -17,9 +17,8 @@
       <tr>
         <td><%= room_reservation.start_date %></td>
         <td><%= room_reservation.end_date %></td>
-        <td><%= room_reservation.room %></td>
+        <td><%= room_reservation.room.name %></td>
         <td><%= link_to 'Show', room_reservation %></td>
-        <td><%= link_to 'Edit', edit_room_reservation_path(room_reservation) %></td>
         <td><%= link_to 'Destroy', room_reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -27,5 +26,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Room Reservation', new_room_reservation_path %>

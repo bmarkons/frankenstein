@@ -65,6 +65,7 @@ class AccommodationsController < ApplicationController
   def approve
     @accommodation.approved = true
     @accommodation.save
+    redirect_to accommodations_url, notice: "#{@accommodation.name} is approved."
   end
 
   private

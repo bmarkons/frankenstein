@@ -12,8 +12,7 @@
 
 <p>
   <strong>Room:</strong>
-  <%= @room_reservation.room %>
+  <%= @room_reservation.room.name %>
 </p>
 
-<%= link_to 'Edit', edit_room_reservation_path(@room_reservation) %> |
 <%= link_to 'Back', room_reservations_path %>

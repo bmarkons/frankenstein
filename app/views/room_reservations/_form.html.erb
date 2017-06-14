@@ -1,4 +1,4 @@
-<%= form_for(room_reservation) do |f| %>
+<%= form_for(room_reservation, url: accommodation_room_room_reservations_path(@accommodation, @room)) do |f| %>
   <% if room_reservation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(room_reservation.errors.count, "error") %> prohibited this room_reservation from being saved:</h2>
@@ -19,11 +19,6 @@
   <div class="field">
     <%= f.label :end_date %>
     <%= f.datetime_select :end_date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :room_id %>
-    <%= f.text_field :room_id %>
   </div>
 
   <div class="actions">

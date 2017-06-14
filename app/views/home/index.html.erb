@@ -7,9 +7,12 @@
     <li><%= link_to "Managers", managers_path %></li>
     <li><%= link_to "Accommodation types", accommodation_types_path %></li>
     <li><%= link_to "Accommodations", accommodations_path %></li>
+    <li><%= link_to "Reservations", room_reservations_path %></li>
   <% elsif current_user.type == "manager" %>
     <li><%= link_to "Your accommodations", my_accommodations_path %></li>
+    <li><%= link_to "Customer reservations", room_reservations_path %></li>
   <% elsif current_user.type == "user" %>
     <li><%= link_to "Accommodations", accommodations_path %></li>
+    <li><%= link_to "Your reservations", room_reservations_path %></li>
   <% end %>
 </ul>
