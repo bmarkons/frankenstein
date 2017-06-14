@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   User.inheritance_column = :proba
 
-
   has_many :accommodations
+  has_many :room_reservations
 
   def admin?
     type == "admin"
