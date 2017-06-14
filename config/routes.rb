@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :room_reservations
   resources :accommodations do
     get "my", on: :collection, as: :my
+    post "approve", on: :member, as: :approve
     resources :rooms, on: :member
   end
 end

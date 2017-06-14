@@ -1,8 +1,8 @@
 class AccommodationsController < ApplicationController
-  before_action :set_accommodation, only: [:show, :edit, :update, :destroy]
+  before_action :set_accommodation, only: [:show, :edit, :update, :destroy, :approve]
   before_action :set_places, except: [:index, :my, :destroy]
   before_action :set_accommodation_types, except: [:index, :my, :destroy]
-  before_action :check_admin, only: []
+  before_action :check_admin, only: [:approve]
   before_action :check_manager, only: [:new, :edit, :create, :update, :destroy, :my]
   before_action :check_user, only: []
   before_action :check_admin_or_user, only: [:index]
@@ -59,6 +59,11 @@ class AccommodationsController < ApplicationController
 
   def my
     @accommodations = current_user.accommodations
+  end
+
+  def approve
+    @accommodation.approved = true
+    @accommodation.save
   end
 
   private
