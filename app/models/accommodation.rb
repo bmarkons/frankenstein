@@ -11,4 +11,8 @@ class Accommodation < ApplicationRecord
   def owned_by?(owner)
     owner.id == user.id
   end
+
+  def top10
+    order(grade: :desc).first(10)
+  end
 end
