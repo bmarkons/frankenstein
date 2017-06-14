@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Accommodation Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accommodation_types.each do |accommodation_type| %>
+      <tr>
+        <td><%= accommodation_type.name %></td>
+        <td><%= link_to 'Show', accommodation_type %></td>
+        <td><%= link_to 'Edit', edit_accommodation_type_path(accommodation_type) %></td>
+        <td><%= link_to 'Destroy', accommodation_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Accommodation Type', new_accommodation_type_path %>
