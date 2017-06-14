@@ -2,28 +2,20 @@ class AccommodationsController < ApplicationController
   before_action :set_accommodation, only: [:show, :edit, :update, :destroy]
   before_action :set_places, except: [:index, :my, :destroy]
 
-  # GET /accommodations
-  # GET /accommodations.json
   def index
     @accommodations = Accommodation.all
   end
 
-  # GET /accommodations/1
-  # GET /accommodations/1.json
   def show
   end
 
-  # GET /accommodations/new
   def new
     @accommodation = Accommodation.new
   end
 
-  # GET /accommodations/1/edit
   def edit
   end
 
-  # POST /accommodations
-  # POST /accommodations.json
   def create
     @accommodation = current_user.accommodations.build(accommodation_params)
 
@@ -34,8 +26,6 @@ class AccommodationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /accommodations/1
-  # PATCH/PUT /accommodations/1.json
   def update
     respond_to do |format|
       if @accommodation.update(accommodation_params)
@@ -48,8 +38,6 @@ class AccommodationsController < ApplicationController
     end
   end
 
-  # DELETE /accommodations/1
-  # DELETE /accommodations/1.json
   def destroy
     @accommodation.destroy
     respond_to do |format|
@@ -63,6 +51,7 @@ class AccommodationsController < ApplicationController
   end
 
   private
+
   def set_accommodation
     @accommodation = Accommodation.find(params[:id])
   end
