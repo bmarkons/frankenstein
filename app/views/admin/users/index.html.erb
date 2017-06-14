@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Blocked</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @managers.each do |manager| %>
+      <tr>
+        <td><%= manager.email %></td>
+        <td><%= manager.blocked %></td>
+        <% if !manager.blocked? %>
+          <td><%= link_to "Block", toggle_block_manager_path(manager), :method => :post %></td>
+        <% else %>
+          <td><%= link_to "Unblock", toggle_block_manager_path(manager), :method => :post %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

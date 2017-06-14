@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :regions
     resources :places
     resources :accommodation_types
+    get "/users", to: "users#index", as: "managers"
+    post "/toggle_block_manager/:id", to: "users#toggle_block_manager", as: "toggle_block_manager"
   end
 
   resources :comments

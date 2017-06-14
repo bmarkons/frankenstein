@@ -6,6 +6,7 @@ class AccommodationsController < ApplicationController
   before_action :check_manager, only: [:new, :edit, :create, :update, :destroy, :my]
   before_action :check_user, only: []
   before_action :check_admin_or_user, only: [:index]
+  before_action :check_blocked, only: [:create]
 
   def index
     @accommodations = if current_user.type == "manager"
@@ -94,6 +95,10 @@ class AccommodationsController < ApplicationController
 
   def check_admin_or_user
     check_admin || check_user
+  end
+
+  def check_blocked
+    ActionController::RoutingError.new("Not found") if current_user.blocked?
   end
 
   def accommodation_params

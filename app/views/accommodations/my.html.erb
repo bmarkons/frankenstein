@@ -2,4 +2,4 @@
 
 <%= render "accommodations/accommodations" if @accommodations.present? %>
 
-<%= link_to "New accommodation", new_accommodation_path %>
+<%= link_to "New accommodation", new_accommodation_path unless current_user.blocked? %>
