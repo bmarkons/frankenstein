@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th>Type</th>
       <th>Name</th>
       <th>Description</th>
       <th>Address</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @accommodations.each do |accommodation| %>
       <tr>
+        <td><%= accommodation.accommodation_type.name %>
         <td><%= accommodation.name %></td>
         <td><%= accommodation.description %></td>
         <td><%= accommodation.address %></td>

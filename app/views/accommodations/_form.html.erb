@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="field">
+    <%= f.select :accommodation_type_id, options_for_select(@accommodation_types.map { |type| [type.name, type.id] }, @accommodation_type), :prompt => "Select type" %>
+  </div>
+
+  <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>

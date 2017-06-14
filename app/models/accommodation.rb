@@ -1,6 +1,7 @@
 class Accommodation < ApplicationRecord
   belongs_to :place
   belongs_to :user
+  belongs_to :accommodation_type
 
   has_many :rooms
   has_many :comments

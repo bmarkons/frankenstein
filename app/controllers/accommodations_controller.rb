@@ -1,6 +1,7 @@
 class AccommodationsController < ApplicationController
   before_action :set_accommodation, only: [:show, :edit, :update, :destroy]
   before_action :set_places, except: [:index, :my, :destroy]
+  before_action :set_accommodation_types, except: [:index, :my, :destroy]
   before_action :check_admin, only: []
   before_action :check_manager, only: [:new, :edit, :create, :update, :destroy, :my]
   before_action :check_user, only: []
@@ -70,6 +71,10 @@ class AccommodationsController < ApplicationController
     @places = Place.all
   end
 
+  def set_accommodation_types
+    @accommodation_types = AccommodationType.all
+  end
+
   def check_admin
     ActionController::RoutingError.new("Not found") unless current_user.admin?
   end
@@ -87,6 +92,6 @@ class AccommodationsController < ApplicationController
   end
 
   def accommodation_params
-    params.require(:accommodation).permit(:name, :description, :address, :average_grade, :latitude, :longitude, :image_url, :approved, :place_id)
+    params.require(:accommodation).permit(:name, :description, :address, :average_grade, :latitude, :longitude, :image_url, :approved, :place_id, :accommodation_type_id)
   end
 end
