@@ -42,8 +42,12 @@
 
 <p>
   <strong>Place:</strong>
-  <%= @accommodation.place %>
+  <%= link_to @accommodation.place.name, @accommodation.place %>
 </p>
 
 <%= link_to 'Edit', edit_accommodation_path(@accommodation) %> |
-<%= link_to 'Back', accommodations_path %>
+<% if @accommodation.owned_by?(current_user) %>
+  <%= link_to 'Back', my_accommodations_path %>
+<% else %>
+  <%= link_to 'Back', accommodations_path %>
+<% end %>

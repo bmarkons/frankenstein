@@ -1,9 +1,19 @@
 class AccommodationsController < ApplicationController
   before_action :set_accommodation, only: [:show, :edit, :update, :destroy]
   before_action :set_places, except: [:index, :my, :destroy]
+  before_action :check_admin, only: []
+  before_action :check_manager, only: [:new, :edit, :create, :update, :destroy, :my]
+  before_action :check_user, only: []
+  before_action :check_admin_or_user, only: [:index]
 
   def index
-    @accommodations = Accommodation.all
+    @accommodations = if current_user.type == "manager"
+                        current_user.accommodations
+                      elsif current_user.type == "admin"
+                        Accommodation.all
+                      elsif current_user.type == "user"
+                        Accommodation.approved
+                      end
   end
 
   def show
@@ -47,7 +57,7 @@ class AccommodationsController < ApplicationController
   end
 
   def my
-    Accommodation.owned_by(current_user)
+    @accommodations = current_user.accommodations
   end
 
   private
@@ -58,6 +68,22 @@ class AccommodationsController < ApplicationController
 
   def set_places
     @places = Place.all
+  end
+
+  def check_admin
+    ActionController::RoutingError.new("Not found") unless current_user.admin?
+  end
+
+  def check_manager
+    ActionController::RoutingError.new("Not found") unless current_user.manager?
+  end
+
+  def check_user
+    ActionController::RoutingError.new("Not found") unless current_user.user?
+  end
+
+  def check_admin_or_user
+    check_admin || check_user
   end
 
   def accommodation_params

@@ -1,4 +1,4 @@
-class Admin::PlacesController < AdminController
+class Admin::PlacesController < Admin::AdminController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
   before_action :set_regions, only: [:edit, :update, :new, :create]
 

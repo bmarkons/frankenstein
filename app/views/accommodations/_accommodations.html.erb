@@ -25,7 +25,7 @@
         <td><%= accommodation.longitude %></td>
         <td><%= accommodation.image_url %></td>
         <td><%= accommodation.approved %></td>
-        <td><%= accommodation.place %></td>
+        <td><%= link_to accommodation.place.name, accommodation.place %></td>
         <td><%= link_to 'Show', accommodation %></td>
         <% if accommodation.owned_by?(current_user) %>
           <td><%= link_to 'Edit', edit_accommodation_path(accommodation) %></td>

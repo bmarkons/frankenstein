@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 
   resources :comments
   resources :room_reservations
-  resources :rooms
   resources :accommodations do
     get "my", on: :collection, as: :my
+    resources :rooms, on: :member
   end
 end
