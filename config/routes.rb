@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   end
 
   resources :comments
-  resources :room_reservations, :only => [:index, :show]
+  resources :room_reservations, :only => [:index, :show, :destroy]
   resources :accommodations do
     get "my", on: :collection, as: :my
     post "approve", on: :member, as: :approve
     resources :rooms, on: :member do
-      resources :room_reservations, :except => [:index, :edit, :update, :show]
+      resources :room_reservations, :except => [:index, :edit, :update, :show, :destroy]
     end
   end
 end

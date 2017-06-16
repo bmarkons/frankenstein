@@ -3,8 +3,8 @@ class Accommodation < ApplicationRecord
   belongs_to :user
   belongs_to :accommodation_type
 
-  has_many :rooms
-  has_many :comments
+  has_many :rooms, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 
   scope :all_except_owned_by, -> (user) { where.not(user: user) }
   scope :approved, -> { where(approved: true) }
