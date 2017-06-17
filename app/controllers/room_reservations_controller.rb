@@ -1,5 +1,5 @@
 class RoomReservationsController < ApplicationController
-  before_action :set_accommodation, :set_room, except: [:index, :show]
+  before_action :set_accommodation, :set_room, except: [:index, :show, :destroy]
   before_action :set_room_reservation, only: [:show, :destroy]
 
   def index
