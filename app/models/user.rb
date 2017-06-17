@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :accommodations
   has_many :room_reservations
+  has_many :comments
 
   def admin?
     type == "admin"
