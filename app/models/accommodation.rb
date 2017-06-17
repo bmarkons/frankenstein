@@ -16,4 +16,8 @@ class Accommodation < ApplicationRecord
   def owned_by?(owner)
     owner.id == user.id
   end
+
+  def commented_by?(user)
+    Comment.exists?(user: user, accommodation: self)
+  end
 end

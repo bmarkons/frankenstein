@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     post "/toggle_block_manager/:id", to: "users#toggle_block_manager", as: "toggle_block_manager"
   end
 
-  resources :comments
+  resources :comments, :except => [:show, :new, :create]
   resources :room_reservations, :only => [:index, :show, :destroy]
   resources :accommodations do
     get "my", on: :collection, as: :my
@@ -19,5 +19,6 @@ Rails.application.routes.draw do
     resources :rooms, on: :member do
       resources :room_reservations, :except => [:index, :edit, :update, :show, :destroy]
     end
+    resources :comments, on: :member
   end
 end

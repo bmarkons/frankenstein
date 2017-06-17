@@ -1,4 +1,4 @@
-<%= form_for(comment) do |f| %>
+<%= form_for(comment, url: accommodation_comments_path(@accommodation, comment)) do |f| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -12,18 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :grade %>
-    <%= f.text_field :grade %>
-  </div>
-
-  <div class="field">
     <%= f.label :text %>
     <%= f.text_area :text %>
-  </div>
-
-  <div class="field">
-    <%= f.label :accommodation_id %>
-    <%= f.text_field :accommodation_id %>
   </div>
 
   <div class="actions">

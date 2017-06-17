@@ -45,6 +45,10 @@
   <%= link_to @accommodation.place.name, @accommodation.place %>
 </p>
 
+<p>
+  <%= link_to "Comments", accommodation_comments_path(@accommodation) %>
+</p>
+
 <%= link_to 'Edit', edit_accommodation_path(@accommodation) %> |
 <% if @accommodation.owned_by?(current_user) %>
   <%= link_to 'Back', my_accommodations_path %>
