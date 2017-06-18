@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :accommodations
   has_many :room_reservations
   has_many :comments
+  has_many :grades
 
   def admin?
     type == "admin"
@@ -19,5 +20,15 @@ class User < ApplicationRecord
 
   def manager?
     type == "manager"
+  end
+
+  def grade(comment)
+    if grade = Grade.find_by(comment: comment, user: self)
+      grade.value
+    end
+  end
+
+  def graded?(comment)
+    Grade.find_by(comment: comment, user: self) ? true : false
   end
 end

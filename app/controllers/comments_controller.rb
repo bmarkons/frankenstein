@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_accommodation
-  before_action :set_comment, only: [:edit, :update, :destroy, :show]
+  before_action :set_comment, only: [:edit, :update, :destroy, :show, :grade]
 
   def index
     @comments =
@@ -65,6 +65,14 @@ class CommentsController < ApplicationController
     end
   end
 
+  def grade
+    unless @comment.posted_by?(current_user) || current_user.type != "user"
+      grade = @comment.grades.build(value: params[:grade_value].to_f)
+      grade.user = current_user
+      grade.save
+    end
+  end
+
   private
 
   def set_accommodation
@@ -74,7 +82,7 @@ class CommentsController < ApplicationController
   end
 
   def set_comment
-    @comment = current_user.comments.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def comment_params

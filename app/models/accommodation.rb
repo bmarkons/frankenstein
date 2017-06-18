@@ -10,7 +10,6 @@ class Accommodation < ApplicationRecord
   scope :approved, -> { where(approved: true) }
 
   def self.top10
-    order(average_grade: :desc).first(10)
   end
 
   def owned_by?(owner)

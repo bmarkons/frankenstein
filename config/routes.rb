@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     resources :rooms, on: :member do
       resources :room_reservations, :except => [:index, :edit, :update, :show, :destroy]
     end
-    resources :comments, on: :member
+    resources :comments, on: :member do
+      post "grade", on: :member, as: :grade
+    end
   end
 end
