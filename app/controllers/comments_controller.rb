@@ -18,20 +18,26 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.new
+    unless @accommodation.commented_by?(current_user) || current_user.type != "user"
+      @comment = Comment.new
+    else
+      redirect_to accommodation_comments_url
+    end
   end
 
   def create
-    @comment = @accommodation.comments.build(comment_params)
-    @comment.user = current_user
+    unless @accommodation.commented_by?(current_user) || current_user.type != "user"
+      @comment = @accommodation.comments.build(comment_params)
+      @comment.user = current_user
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to accommodation_comments_path(@accommodation, @comment), notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @comment.save
+          format.html { redirect_to accommodation_comments_path(@accommodation, @comment), notice: 'Comment was successfully created.' }
+          format.json { render :show, status: :created, location: @comment }
+        else
+          format.html { render :new }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

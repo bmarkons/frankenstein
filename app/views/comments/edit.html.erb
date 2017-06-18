@@ -1,6 +1,10 @@
 <h1>Editing Comment</h1>
 
-<%= render 'form', comment: @comment %>
+<% if @accommodation.present? %>
+  <%= render 'form', comment: @comment, url: accommodation_comment_path(@accommodation, @comment) %>
+<% else %>
+  <%= render 'form', comment: @comment, url: comment_path(@comment) %>
+<% end %>
 
 <%= link_to 'Show', @comment %> |
 <%= link_to 'Back', comments_path %>
