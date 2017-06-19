@@ -2,7 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :accommodation
   belongs_to :user
 
-  has_many :grades
+  has_many :grades, :dependent => :destroy
 
   scope :managed_by, -> (manager) { where(accommodation: { user: manager }) }
   scope :posted_by, -> (user) { where(user: user) }

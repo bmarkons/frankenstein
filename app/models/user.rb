@@ -5,10 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   User.inheritance_column = :proba
 
-  has_many :accommodations
-  has_many :room_reservations
-  has_many :comments
-  has_many :grades
+  has_many :accommodations, :dependent => :destroy
+  has_many :room_reservations, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
+  has_many :grades, :dependent => :destroy
 
   def admin?
     type == "admin"
