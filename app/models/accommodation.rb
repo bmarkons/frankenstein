@@ -12,6 +12,10 @@ class Accommodation < ApplicationRecord
   def self.top10
   end
 
+  def self.wait_any?
+    Accommodation.exists?(approved: false)
+  end
+
   def owned_by?(owner)
     owner.id == user.id
   end

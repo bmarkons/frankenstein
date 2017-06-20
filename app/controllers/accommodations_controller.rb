@@ -32,6 +32,10 @@ class AccommodationsController < ApplicationController
     @accommodation = current_user.accommodations.build(accommodation_params)
 
     if @accommodation.save
+      ActionCable.server.broadcast(
+        "accommodation_admin",
+        body: "new accommodation"
+      )
       redirect_to @accommodation, notice: 'Accommodation was successfully created.'
     else
       render :new
@@ -65,6 +69,10 @@ class AccommodationsController < ApplicationController
   def approve
     @accommodation.approved = true
     @accommodation.save
+    ActionCable.server.broadcast(
+      "accommodation_manager#{@accommodation.user.id}",
+      body: "approved"
+    )
     redirect_to accommodations_url, notice: "#{@accommodation.name} is approved."
   end
 
