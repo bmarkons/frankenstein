@@ -70,6 +70,8 @@ class CommentsController < ApplicationController
       grade = @comment.grades.build(value: params[:grade_value].to_f)
       grade.user = current_user
       grade.save
+
+      redirect_to accommodation_comments_url(@accommodation)
     end
   end
 
